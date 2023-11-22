@@ -7,7 +7,8 @@ export const fetchRestaurantData = async () => {
         console.log('An error has occured while fetching data'); // for debugging
         return;
     } else {
-        const restaurant = await response.json();
-        return restaurant;
+        const restaurantData = await response.json();
+        console.log('restaurantData:', restaurantData); // for debugging
+        return restaurantData;
     }
 }
