@@ -1,8 +1,3 @@
-import { fetchRestaurantData } from '../models/restaurant';
-
-
-fetchRestaurantData();
-
 const Map = () => {
     return (
         <div>
