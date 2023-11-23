@@ -1,12 +1,15 @@
 import './App.css';
-import { useState } from "react";
+import { useState, useEffect, createContext } from "react";
 import { Outlet } from "react-router-dom";
-import { Layout, theme, ConfigProvider } from 'antd';
+import { Layout, theme, ConfigProvider, Spin } from 'antd';
+import { fetchRestaurantData } from './models/restaurant';
 import NavBar from './globalComponents/Navbar';
 import FooterContent from './globalComponents/FooterContent';
 
+export const RestaurantContext = createContext();
 
 const App = () => {
+
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -14,10 +17,21 @@ const App = () => {
   const { defaultAlgorithm, darkAlgorithm } = theme;
   const { Header, Content, Footer } = Layout;
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [restaurantData, setRestaurantData] = useState();
 
   const setDarkMode = () => {
     setIsDarkMode((previousValue) => !previousValue);
   }
+
+  // Fetch data
+  useEffect(() => {
+    fetchRestaurantData().then((res) => {
+      setRestaurantData(res);
+    })
+  }, []);
+
+  console.log('restaurantData', restaurantData); // for debugging
+
 
   return (
     <ConfigProvider
@@ -37,7 +51,17 @@ const App = () => {
         </Header>
 
         <Content className='App-content' >
-          <Outlet />
+          {restaurantData ?
+            (
+              <RestaurantContext.Provider value={restaurantData}>
+                <Outlet />
+              </RestaurantContext.Provider>
+            )
+            : (
+              <div className='App-loading'>
+                <Spin />
+              </div>
+            )}
         </Content>
 
         <Footer className='App-footer'>

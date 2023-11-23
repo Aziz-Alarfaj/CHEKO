@@ -1,15 +1,17 @@
+import { Link } from "react-router-dom";
 import { Menu, Switch } from 'antd';
+
 
 
 const NavBar = ({ darkMode }) => {
 
     const items = [
         {
-            label: 'Home',
+            label: <Link to="/">Home</Link>,
             key: 'home',
         },
         {
-            label: 'Map',
+            label: <Link to="/map">Map</Link>,
             key: 'map',
         },
         {
@@ -19,13 +21,13 @@ const NavBar = ({ darkMode }) => {
     ]
 
     return (
-        <>
+        <div style={{ minWidth: '100vh' }} >
             <Menu
                 mode="horizontal"
                 defaultSelectedKeys={['home']}
                 items={items}
             />
-        </>
+        </div >
     );
 }
 
