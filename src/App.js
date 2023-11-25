@@ -3,7 +3,9 @@ import { useState, useEffect, createContext, useMemo } from "react";
 import { Outlet } from "react-router-dom";
 import { Layout, theme, ConfigProvider, Spin } from 'antd';
 import { fetchRestaurantData } from './models/restaurant';
+import { getCategories } from './utils/functions';
 import NavBar from './globalComponents/Navbar';
+import Search from './globalComponents/Search';
 import FooterContent from './globalComponents/FooterContent';
 
 export const RestaurantContext = createContext();
@@ -18,6 +20,8 @@ const App = () => {
   const { Header, Content, Footer } = Layout;
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [restaurantData, setRestaurantData] = useState();
+  const [filteredRestaurantData, setFilteredRestaurantData] = useState();
+  const [categories, setCategories] = useState();
 
   const setDarkMode = () => {
     setIsDarkMode((previousValue) => !previousValue);
@@ -27,14 +31,19 @@ const App = () => {
   useEffect(() => {
     fetchRestaurantData().then((res) => {
       setRestaurantData(res);
+      setCategories(getCategories(res));
     })
   }, []);
+
+  const filterRestaurantData = (data) => {
+    setFilteredRestaurantData(data);
+  }
 
   console.log('restaurantData', restaurantData); // for debugging
 
   const value = useMemo(
-    () => ({ restaurantData, setRestaurantData }),
-    [restaurantData]
+    () => ({ restaurantData, categories, filteredRestaurantData, setRestaurantData }),
+    [restaurantData, categories, filteredRestaurantData]
   );
 
   console.log('value', value);
@@ -51,36 +60,44 @@ const App = () => {
             defaultBg: '#F4CBDF',
             defaultBorderColor: '#F4CBDF',
             fontWeight: 'bold'
+          },
+          Menu: {
+            horizontalItemSelectedBg: '#F4CBDF',
+            horizontalItemSelectedColor: '#000',
+            horizontalItemBorderRadius: '0px 0px 15px 15px',
+            activeBarHeight: 0,
+            itemColor: '#fff',
+            itemHoverColor: '#F4CBDF'
           }
         },
         algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm,
       }}
     >
-      <Layout className="layout">
+      <RestaurantContext.Provider value={value}>
+        <Layout className="layout">
+          <Header className='App-header'>
+            <NavBar darkMode={setDarkMode} />
+            <Search categories={categories} restaurantData={restaurantData} filterRestaurantData={filterRestaurantData} />
+          </Header>
 
-        <Header className='App-header'>
-          <NavBar darkMode={setDarkMode} />
-        </Header>
-
-        <Content className='App-content' >
-          {restaurantData ?
-            (
-              <RestaurantContext.Provider value={value}>
+          <Content className='App-content' >
+            {restaurantData ?
+              (
                 <Outlet />
-              </RestaurantContext.Provider>
-            )
-            : (
-              <div className='App-loading'>
-                <Spin />
-              </div>
-            )}
-        </Content>
+              )
+              : (
+                <div className='App-loading'>
+                  <Spin />
+                </div>
+              )}
+          </Content>
 
-        <Footer className='App-footer'>
-          <FooterContent />
-        </Footer>
+          <Footer className='App-footer'>
+            <FooterContent />
+          </Footer>
 
-      </Layout>
+        </Layout>
+      </RestaurantContext.Provider>
     </ConfigProvider>
 
   );

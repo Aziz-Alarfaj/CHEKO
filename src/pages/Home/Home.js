@@ -5,23 +5,12 @@ import { RestaurantContext } from '../../App'
 import ItemCard from './components/ItemCard';
 
 const Home = () => {
-    const { restaurantData } = useContext(RestaurantContext);
+    const { restaurantData, categories } = useContext(RestaurantContext);
 
     const [selectedCategory, setSelectedCategory] = useState(restaurantData[0].category);
 
-    // needs refactoring to prevent rerendering
-    const categoriesObj = restaurantData.reduce((acc, item) => {
-        const category = item.category;
-        acc[category] = (acc[category] || 0) + 1;
-        return acc;
-    }, {});
-
-    const categories = Object.keys(categoriesObj).map((key) => {
-        return { category: key, count: categoriesObj[key] }
-    })
-
     const getItemOfCategory = (category) => {
-        return restaurantData.filter((item) => item.category === category)
+        return restaurantData.filter((item) => item.category === category);
     }
 
     console.log('restaurantData', restaurantData);

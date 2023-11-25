@@ -11,7 +11,7 @@ const ItemModal = ({ closeModal, modalOpen, itemData, count, addItemCount, subtr
                 title={[
                     <span style={{ fontSize: '24px', marginRight: '16px' }}>{itemData.name}</span>,
                     <span style={{ color: '#599887', backgroundColor: '#D0EAE3', padding: '2px 15px', borderRadius: '5px', margin: '10px 0px 10px 0px', fontSize: '14px' }}> Best Sale </span>,
-                    <p style={{ margin: '0px', color: '#8f8f8f' }}>200 Cal</p>
+                    <p style={{ margin: '0px', color: '#8f8f8f' }}>{itemData.calorie} Cal</p>
                 ]}
                 centered
                 open={modalOpen}
