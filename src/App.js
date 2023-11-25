@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, useEffect, createContext } from "react";
+import { useState, useEffect, createContext, useMemo } from "react";
 import { Outlet } from "react-router-dom";
 import { Layout, theme, ConfigProvider, Spin } from 'antd';
 import { fetchRestaurantData } from './models/restaurant';
@@ -32,6 +32,13 @@ const App = () => {
 
   console.log('restaurantData', restaurantData); // for debugging
 
+  const value = useMemo(
+    () => ({ restaurantData, setRestaurantData }),
+    [restaurantData]
+  );
+
+  console.log('value', value);
+
 
   return (
     <ConfigProvider
@@ -39,6 +46,11 @@ const App = () => {
         components: {
           Layout: {
             headerBg: colorBgContainer
+          },
+          Button: {
+            defaultBg: '#F4CBDF',
+            defaultBorderColor: '#F4CBDF',
+            fontWeight: 'bold'
           }
         },
         algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm,
@@ -53,7 +65,7 @@ const App = () => {
         <Content className='App-content' >
           {restaurantData ?
             (
-              <RestaurantContext.Provider value={restaurantData}>
+              <RestaurantContext.Provider value={value}>
                 <Outlet />
               </RestaurantContext.Provider>
             )

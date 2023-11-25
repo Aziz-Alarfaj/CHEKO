@@ -21,13 +21,12 @@ const NavBar = ({ darkMode }) => {
     ]
 
     return (
-        <div style={{ minWidth: '100vh' }} >
-            <Menu
-                mode="horizontal"
-                defaultSelectedKeys={['home']}
-                items={items}
-            />
-        </div >
+        <Menu
+            style={{ height: '100%', width: '97%', borderRadius: '0px 0px 36px 0px', backgroundColor: '#242633' }}
+            mode="horizontal"
+            defaultSelectedKeys={['home']}
+            items={items}
+        />
     );
 }
 

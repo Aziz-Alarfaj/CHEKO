@@ -2,27 +2,29 @@ import './Home.css';
 import { useState, useContext } from "react";
 import { Card, List, Row, Col, Divider } from 'antd';
 import { RestaurantContext } from '../../App'
+import ItemCard from './components/ItemCard';
 
 const Home = () => {
-    const restaurantData = useContext(RestaurantContext);
+    const { restaurantData } = useContext(RestaurantContext);
+
+    const [selectedCategory, setSelectedCategory] = useState(restaurantData[0].category);
 
     // needs refactoring to prevent rerendering
-    const getCategories = () => {
-        const categories = restaurantData.map((item) => item.category);
-        return [...new Set(categories)].map(value => ({ value }));
-    }
-
-    const categories2 = restaurantData.reduce((acc, item) => {
+    const categoriesObj = restaurantData.reduce((acc, item) => {
         const category = item.category;
         acc[category] = (acc[category] || 0) + 1;
         return acc;
     }, {});
 
-    console.log('categories2', categories2);
+    const categories = Object.keys(categoriesObj).map((key) => {
+        return { category: key, count: categoriesObj[key] }
+    })
 
-    const categories = getCategories();
+    const getItemOfCategory = (category) => {
+        return restaurantData.filter((item) => item.category === category)
+    }
 
-    console.log('categories', categories);
+    console.log('restaurantData', restaurantData);
     return (
         <div className="Home">
             <Row gutter={[16, 16]}>
@@ -33,14 +35,14 @@ const Home = () => {
                                 overflowX: 'auto',
                                 maxHeight: '150px',
                             }}
-                            grid={{
-                                gutter: 13000,
-                                column: categories.length,
-                            }}
+                            // grid={{
+                            //     gutter: 36,
+                            //     column: categories.length,
+                            // }}
                             dataSource={categories}
                             renderItem={(item) => (
                                 <List.Item>
-                                    <Card style={{ width: '300px' }}>
+                                    <Card style={{ width: '300px', marginRight: '100px' }} onClick={() => setSelectedCategory(item.category)} hoverable={true}>
                                         <Row gutter={[16, 5]}>
                                             <Col xs={8} sm={8} md={8} lg={8} xl={8}>
                                                 <div style={{ backgroundColor: 'pink', borderRadius: '10px', height: '50px', width: '50px' }}>
@@ -48,10 +50,10 @@ const Home = () => {
                                                 </div>
                                             </Col>
                                             <Col xs={8} sm={8} md={8} lg={8} xl={8} style={{ display: 'flex', justifyContent: 'center', margin: 'auto' }}>
-                                                <p style={{ fontWeight: 'bold' }}>{item.value}</p>
+                                                <p style={{ fontWeight: 'bold' }}>{item.category}</p>
                                             </Col>
                                             <Col xs={8} sm={8} md={8} lg={8} xl={8} style={{ display: 'flex', justifyContent: 'center', margin: 'auto' }}>
-                                                <p style={{ fontWeight: 'bold' }}>Number</p>
+                                                <p style={{ fontWeight: 'bold' }}>{item.count}</p>
                                             </Col>
                                         </Row>
                                     </Card>
@@ -65,7 +67,7 @@ const Home = () => {
                 </Col>
                 <Col xs={4} sm={4} md={4} lg={4} xl={4}>
 
-                    <Card>
+                    <Card hoverable={true}>
                         <Row gutter={[8, 8]}>
                             <Col xs={8} sm={8} md={8} lg={8} xl={8}>
                                 <div style={{ backgroundColor: 'pink', borderRadius: '10px', height: '50px', width: '50px' }}>
@@ -83,7 +85,32 @@ const Home = () => {
                 </Col>
             </Row>
             <Row>
-                <Col>
+                <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+                    <Row gutter={[8, 8]}>
+                        <Col xs={2} sm={2} md={2} lg={2} xl={2} style={{ display: 'flex', alignItems: 'center' }}>
+                            <h1>{selectedCategory}</h1>
+                        </Col>
+                        <Col xs={22} sm={22} md={22} lg={22} xl={22} style={{ display: 'flex', alignItems: 'center' }}>
+                            <Divider style={{ margin: '12px' }} />
+                        </Col>
+                    </Row>
+                    <List
+                        grid={{
+                            gutter: 16,
+                            xs: 1,
+                            sm: 1,
+                            md: 1,
+                            lg: 2,
+                            xl: 3,
+                            xxl: 3,
+                        }}
+                        dataSource={getItemOfCategory(selectedCategory)}
+                        renderItem={(item) => (
+                            <List.Item>
+                                <ItemCard item={item} />
+                            </List.Item>
+                        )}
+                    />
                 </Col>
             </Row>
         </div>
