@@ -5,7 +5,7 @@ import { RestaurantContext } from '../../App'
 import ItemCard from './components/ItemCard';
 
 const Home = () => {
-    const { restaurantData, categories } = useContext(RestaurantContext);
+    const { restaurantData, categories, filteredRestaurantData } = useContext(RestaurantContext);
 
     const [selectedCategory, setSelectedCategory] = useState(restaurantData[0].category);
 

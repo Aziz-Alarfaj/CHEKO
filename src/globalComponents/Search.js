@@ -6,17 +6,17 @@ const Search = ({ categories, restaurantData, filterRestaurantData }) => {
 
     const options = categories?.map((item) => { return { ...item, value: item.category, lable: item.category } })
 
-    const searchRestaurantData = (searchText) => {
-        const threshold = 0.8;
+    // TODO: needs refactoring
+    const searchRestaurantData = (searchText, filter) => {
         return restaurantData?.filter((item) => {
-            const similarity = stringSimilarity(item.name.toLowerCase(), searchText.toLowerCase());
-            return similarity >= threshold;
+            return (item.name.toLowerCase().includes(searchText.toLowerCase()) || item.description.toLowerCase().includes(searchText.toLowerCase())) && (filter ? item.category === filter : true)
+
         });
 
     }
 
     const onFinish = (value) => {
-        const data = searchRestaurantData(value.search);
+        const data = searchRestaurantData(value.search, value.filter);
         console.log('submit', data);
         filterRestaurantData(data)
     }
@@ -45,18 +45,12 @@ const Search = ({ categories, restaurantData, filterRestaurantData }) => {
                                 },
                             ]}
                         >
-                            <Input addonBefore={''} placeholder="Search" />
+                            <Input addonBefore={''} placeholder="Search" allowClear />
                         </Form.Item>
                         <Form.Item
                             name="filter"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Please select a category',
-                                },
-                            ]}
                         >
-                            <Select placeholder="Filter" options={options} />
+                            <Select placeholder="Filter" options={options} allowClear />
                         </Form.Item>
                         <Form.Item>
                             <Button htmlType="submit">Search</Button>
