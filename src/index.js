@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './pages/Home/Home';
-import Map from './pages/Map';
+import Map from './pages/Map/Map';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

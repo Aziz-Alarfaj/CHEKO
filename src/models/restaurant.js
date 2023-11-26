@@ -1,9 +1,9 @@
-import { apiUrl } from '../utils/constants';
+import { API_URL } from '../utils/constants';
 
 // Fetch the restaurant data from the api
 export const fetchRestaurantData = async () => {
     try {
-        const response = await fetch(apiUrl);
+        const response = await fetch(API_URL);
         if (!response.ok) {
             console.log('An error has occured while fetching data'); // for debugging
             return;

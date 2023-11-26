@@ -8,7 +8,7 @@ import { getItemsByCategory } from '../../utils/functions';
 const Home = () => {
     const { restaurantData, categories, filteredRestaurantData } = useContext(RestaurantContext);
 
-    console.log('filteredRestaurantData', filteredRestaurantData);
+    console.log('restaurantData', restaurantData);
     const [selectedCategory, setSelectedCategory] = useState();
 
     const getItemOfSpacificCategory = (category) => {
