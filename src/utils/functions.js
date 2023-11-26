@@ -12,3 +12,19 @@ export const getCategories = (restaurantData) => {
 
     return categories;
 }
+
+export const getItemsByCategory = (restaurantData) => {
+    const groupedByCategory = restaurantData.reduce((result, currentItem) => {
+        const categoryExists = result.find(item => item.category === currentItem.category);
+
+        if (categoryExists) {
+            categoryExists.items.push(currentItem);
+        } else {
+            result.push({ category: currentItem.category, items: [currentItem] });
+        }
+
+        return result;
+    }, []);
+
+    return groupedByCategory;
+}

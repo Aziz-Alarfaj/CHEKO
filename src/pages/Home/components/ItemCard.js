@@ -7,7 +7,6 @@ const ItemCard = ({ item }) => {
     const [modalOpen, setModalOpen] = useState(false);
     const [count, setCount] = useState(0);
     const maxOrders = 30;
-    console.log('item', item);
 
     // handle modal popup display
     const openModal = () => {

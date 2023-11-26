@@ -25,8 +25,6 @@ const Search = ({ categories, restaurantData, filterRestaurantData }) => {
 
     }
 
-    console.log('categories', categories);
-
     return (
         <>
             <Form

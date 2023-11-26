@@ -39,14 +39,10 @@ const App = () => {
     setFilteredRestaurantData(data);
   }
 
-  console.log('restaurantData', restaurantData); // for debugging
-
   const value = useMemo(
     () => ({ restaurantData, categories, filteredRestaurantData, setRestaurantData }),
     [restaurantData, categories, filteredRestaurantData]
   );
-
-  console.log('value', value);
 
 
   return (

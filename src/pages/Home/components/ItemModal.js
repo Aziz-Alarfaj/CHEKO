@@ -2,8 +2,6 @@ import { Modal, Button } from 'antd';
 
 
 const ItemModal = ({ closeModal, modalOpen, itemData, count, addItemCount, subtractItemCount }) => {
-    console.log('modalOpen', modalOpen);
-
 
     return (
         <>
