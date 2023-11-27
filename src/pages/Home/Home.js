@@ -1,9 +1,12 @@
 import './Home.css';
 import { useState, useContext } from "react";
 import { Card, List, Row, Col, Divider } from 'antd';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFileLines } from '@fortawesome/free-solid-svg-icons'
 import { RestaurantContext } from '../../App'
 import ItemCard from './components/ItemCard';
 import { getItemsByCategory } from '../../utils/functions';
+import icons from '../../utils/icons';
 
 const Home = () => {
     const { restaurantData, categories, filteredRestaurantData } = useContext(RestaurantContext);
@@ -29,13 +32,13 @@ const Home = () => {
                             }}
 
                             dataSource={categories}
-                            renderItem={(item) => (
+                            renderItem={(item, index) => (
                                 <List.Item style={{ display: 'inline-block', marginRight: '16px' }}>
                                     <Card style={{ width: '300px' }} onClick={() => setSelectedCategory(item.category)} hoverable={true}>
                                         <Row gutter={[16, 5]}>
                                             <Col span={8}>
-                                                <div style={{ backgroundColor: 'pink', borderRadius: '10px', height: '50px', width: '50px' }}>
-
+                                                <div style={{ backgroundColor: `${icons[index].color}`, borderRadius: '10px', height: '50px', width: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                                    {icons[index].icon}
                                                 </div>
                                             </Col>
                                             <Col span={8} style={{ display: 'flex', justifyContent: 'center', margin: 'auto' }}>
@@ -59,7 +62,8 @@ const Home = () => {
                     <Card hoverable={true}>
                         <Row gutter={[8, 8]}>
                             <Col span={8}>
-                                <div style={{ backgroundColor: 'pink', borderRadius: '10px', height: '50px', width: '50px' }}>
+                                <div style={{ backgroundColor: 'pink', borderRadius: '10px', height: '50px', width: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                    <FontAwesomeIcon icon={faFileLines} />
                                 </div>
                             </Col>
                             <Col span={8} style={{ display: 'flex', justifyContent: 'center', margin: 'auto' }}>

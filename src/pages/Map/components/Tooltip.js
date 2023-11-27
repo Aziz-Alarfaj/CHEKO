@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Row, Col, Button } from 'antd';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 const Tooltip = ({ item }) => {
     const navigate = useNavigate();
@@ -25,7 +27,9 @@ const Tooltip = ({ item }) => {
                         <Button
                             style={{ margin: '0px 15px' }}
                             onClick={navigateToHome}
-                        ></Button>
+                        >
+                            <FontAwesomeIcon icon={faChevronRight} />
+                        </Button>
                     </Row>
                 </Col>
             </Row>
