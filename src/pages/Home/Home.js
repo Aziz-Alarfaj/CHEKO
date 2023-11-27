@@ -1,12 +1,11 @@
 import './Home.css';
 import { useState, useContext } from "react";
-import { Card, List, Row, Col, Divider } from 'antd';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFileLines } from '@fortawesome/free-solid-svg-icons'
+import { List, Row, Col, Divider } from 'antd';
 import { RestaurantContext } from '../../App'
-import ItemCard from './components/ItemCard';
 import { getItemsByCategory } from '../../utils/functions';
-import icons from '../../utils/icons';
+import ItemCard from './components/ItemCard';
+import CategoryList from './components/CategoryList';
+import OrdersCard from './components/OrdersCard';
 
 const Home = () => {
     const { restaurantData, categories, filteredRestaurantData } = useContext(RestaurantContext);
@@ -18,67 +17,27 @@ const Home = () => {
         return restaurantData.filter((item) => item.category === category);
     }
 
+    const selecteCategory = (category) => {
+        setSelectedCategory(category)
+    }
+
     return (
         <div className="Home">
             <Row gutter={[16, 16]}>
-                <Col xs={19} sm={19} md={19} lg={19} xl={19}>
+                <Col span={19}>
                     <Row>
-                        <List
-                            style={{
-                                overflowX: 'auto',
-                                overflowY: 'hidden',
-                                maxHeight: '150px',
-                                whiteSpace: 'nowrap',
-                            }}
-
-                            dataSource={categories}
-                            renderItem={(item, index) => (
-                                <List.Item style={{ display: 'inline-block', marginRight: '16px' }}>
-                                    <Card style={{ width: '300px' }} onClick={() => setSelectedCategory(item.category)} hoverable={true}>
-                                        <Row gutter={[16, 5]}>
-                                            <Col span={8}>
-                                                <div style={{ backgroundColor: `${icons[index].color}`, borderRadius: '10px', height: '50px', width: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                                    {icons[index].icon}
-                                                </div>
-                                            </Col>
-                                            <Col span={8} style={{ display: 'flex', justifyContent: 'center', margin: 'auto' }}>
-                                                <p style={{ fontWeight: 'bold' }}>{item.category}</p>
-                                            </Col>
-                                            <Col span={8} style={{ display: 'flex', justifyContent: 'center', margin: 'auto' }}>
-                                                <p style={{ fontWeight: 'bold' }}>{item.count}</p>
-                                            </Col>
-                                        </Row>
-                                    </Card>
-                                </List.Item>
-                            )}
-                        />
+                        <CategoryList categories={categories} selecteCategory={selecteCategory} />
                     </Row>
                 </Col>
                 <Col span={1} style={{ display: 'flex', justifyContent: 'center', padding: '0px' }}>
                     <Divider type="vertical" style={{ height: '85%', borderInlineStartWidth: '3px' }} />
                 </Col>
                 <Col span={4} style={{ display: 'grid', alignItems: 'center' }}>
-
-                    <Card hoverable={true}>
-                        <Row gutter={[8, 8]}>
-                            <Col span={8}>
-                                <div style={{ backgroundColor: 'pink', borderRadius: '10px', height: '50px', width: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                    <FontAwesomeIcon icon={faFileLines} />
-                                </div>
-                            </Col>
-                            <Col span={8} style={{ display: 'flex', justifyContent: 'center', margin: 'auto' }}>
-                                <p style={{ fontWeight: 'bold' }}>Orders</p>
-                            </Col>
-                            <Col span={8} style={{ display: 'flex', justifyContent: 'center', margin: 'auto' }}>
-                                <p style={{ fontWeight: 'bold' }}>3</p>
-                            </Col>
-                        </Row>
-                    </Card>
-
+                    <OrdersCard />
                 </Col>
             </Row>
             <Row>
-                <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+                <Col span={24}>
                     {!selectedCategory ? getItemsByCategory(filteredRestaurantData ? filteredRestaurantData : restaurantData).map((item) => {
                         return (
                             <>
@@ -114,10 +73,10 @@ const Home = () => {
                     }) : (
                         <>
                             <Row gutter={[8, 8]}>
-                                <Col xs={2} sm={2} md={2} lg={2} xl={2} style={{ display: 'flex', alignItems: 'center' }}>
+                                <Col span={2} style={{ display: 'flex', alignItems: 'center' }}>
                                     <h1>{selectedCategory}</h1>
                                 </Col>
-                                <Col xs={22} sm={22} md={22} lg={22} xl={22} style={{ display: 'flex', alignItems: 'center' }}>
+                                <Col span={22} style={{ display: 'flex', alignItems: 'center' }}>
                                     <Divider style={{ margin: '12px' }} />
                                 </Col>
                             </Row>
