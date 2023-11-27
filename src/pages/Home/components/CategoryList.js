@@ -15,7 +15,7 @@ const CategoryList = ({ categories, selectCategory }) => {
 
                 dataSource={categories}
                 renderItem={(item, index) => (
-                    <List.Item style={{ display: 'inline-block', marginRight: '16px' }}>
+                    <List.Item style={{ display: 'inline-block', margin: '0px 8px' }}>
                         <CategoryCard item={item} icon={icons[index].icon} color={icons[index].color} selectCategory={selectCategory} />
                     </List.Item>
                 )}
