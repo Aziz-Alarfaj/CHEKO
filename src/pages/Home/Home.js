@@ -79,6 +79,8 @@ const Home = () => {
                     {!selectedCategory ? getItemsByCategory(filteredRestaurantData ? filteredRestaurantData : restaurantData).map((item) => {
                         return (
                             <>
+                                {console.log('filteredRestaurantData', filteredRestaurantData)}
+
                                 <Row gutter={[8, 8]}>
                                     <Col xs={2} sm={2} md={2} lg={2} xl={2} style={{ display: 'flex', alignItems: 'center' }}>
                                         <h1>{item.category}</h1>

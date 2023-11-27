@@ -10,6 +10,8 @@
 .App-header {
   background-color: #F5F5F5;
   padding: 0;
+  margin-bottom: 16px;
+  position: relative;
 }
 
 .App-content {

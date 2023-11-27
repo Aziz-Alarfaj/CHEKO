@@ -22,7 +22,7 @@ const NavBar = ({ darkMode }) => {
 
     return (
         <Menu
-            style={{ height: '100%', width: '97%', borderRadius: '0px 0px 36px 0px', backgroundColor: '#242633' }}
+            style={{ height: '135%', width: '98%', borderRadius: '0px 0px 36px 0px', backgroundColor: '#242633', paddingBottom: '32px', paddingLeft: '10vw' }}
             mode="horizontal"
             defaultSelectedKeys={['home']}
             items={items}

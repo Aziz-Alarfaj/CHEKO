@@ -27,12 +27,19 @@ const Search = ({ categories, restaurantData, filterRestaurantData }) => {
 
     return (
         <>
+            {/* <div style={{ backgroundColor: '#fff', position: 'absolute', top: '100%', left: '10vw', zIndex: '10', width: '80vw', borderRadius: '16px', paddingTop: '16px' }}> */}
             <Form
                 name="search"
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
+                style={{
+                    position: 'absolute',
+                    top: '100%',
+                    left: '10vw',
+                    zIndex: '10',
+                }}
             >
-                <Space direction="vertical" size="middle">
+                <Space direction="vertical">
                     <Space.Compact>
                         <Form.Item
                             name="search"
@@ -43,19 +50,20 @@ const Search = ({ categories, restaurantData, filterRestaurantData }) => {
                                 },
                             ]}
                         >
-                            <Input addonBefore={''} placeholder="Search" allowClear />
+                            <Input style={{ width: '48vw', height: '42px' }} addonBefore={''} placeholder="Search" allowClear />
                         </Form.Item>
                         <Form.Item
                             name="filter"
                         >
-                            <Select placeholder="Filter" options={options} allowClear />
+                            <Select style={{ width: '24vw', height: '42px' }} placeholder="Filter" options={options} allowClear />
                         </Form.Item>
                         <Form.Item>
-                            <Button htmlType="submit">Search</Button>
+                            <Button style={{ width: '8vw', height: '42px' }} htmlType="submit">Search</Button>
                         </Form.Item>
                     </Space.Compact>
                 </Space>
             </Form>
+            {/* </div> */}
         </>
     );
 }
