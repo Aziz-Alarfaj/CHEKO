@@ -40,7 +40,7 @@ const App = () => {
   }
 
   const value = useMemo(
-    () => ({ restaurantData, categories, filteredRestaurantData, setRestaurantData }),
+    () => ({ restaurantData, categories, filteredRestaurantData, setRestaurantData, setFilteredRestaurantData }),
     [restaurantData, categories, filteredRestaurantData]
   );
 

@@ -1,9 +1,9 @@
 import { Card, Row, Col } from 'antd';
 
-const CategoryCard = ({ item, icon, color, selecteCategory }) => {
+const CategoryCard = ({ item, icon, color, selectCategory }) => {
     return (
         <>
-            <Card onClick={() => selecteCategory(item.category)} hoverable={true}>
+            <Card onClick={() => selectCategory(item.category)} hoverable={true}>
                 <Row gutter={[42, 5]}>
                     <Col span={8}>
                         <div style={{ backgroundColor: `${color}`, borderRadius: '10px', height: '50px', width: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
