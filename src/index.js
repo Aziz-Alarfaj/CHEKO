@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './pages/Home/Home';
-import Map from './pages/Map/Map';
+import Map2 from './pages/Map/Map';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,7 +14,7 @@ root.render(
     <Routes>
       <Route path="/" element={<App />}>
         <Route index element={<Home />} />
-        <Route path="/map" element={<Map />} />
+        <Route path="/map" element={<Map2 />} />
       </Route>
     </Routes>
   </BrowserRouter>
