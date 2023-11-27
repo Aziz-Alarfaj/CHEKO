@@ -17,7 +17,7 @@ const OrdersCard = () => {
                         <p style={{ fontWeight: 'bold' }}>Orders</p>
                     </Col>
                     <Col span={8} style={{ display: 'flex', justifyContent: 'center', margin: 'auto' }}>
-                        <p style={{ fontWeight: 'bold' }}>3</p>
+                        <p style={{ fontWeight: 'bold' }}>0</p>
                     </Col>
                 </Row>
             </Card>

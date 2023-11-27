@@ -10,7 +10,6 @@ const Search = ({ categories, restaurantData, filterRestaurantData }) => {
     const searchRestaurantData = (searchText, filter) => {
         return restaurantData?.filter((item) => {
             return (item.name.toLowerCase().includes(searchText.toLowerCase()) || item.description.toLowerCase().includes(searchText.toLowerCase())) && (filter ? item.category === filter : true)
-
         });
 
     }
@@ -27,7 +26,6 @@ const Search = ({ categories, restaurantData, filterRestaurantData }) => {
 
     return (
         <>
-            {/* <div style={{ backgroundColor: '#fff', position: 'absolute', top: '100%', left: '10vw', zIndex: '10', width: '80vw', borderRadius: '16px', paddingTop: '16px' }}> */}
             <Form
                 name="search"
                 onFinish={onFinish}
@@ -43,12 +41,6 @@ const Search = ({ categories, restaurantData, filterRestaurantData }) => {
                     <Space.Compact>
                         <Form.Item
                             name="search"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Please input text',
-                                },
-                            ]}
                         >
                             <Input style={{ width: '48vw', height: '42px' }} addonBefore={''} placeholder="Search" allowClear />
                         </Form.Item>
@@ -63,7 +55,6 @@ const Search = ({ categories, restaurantData, filterRestaurantData }) => {
                     </Space.Compact>
                 </Space>
             </Form>
-            {/* </div> */}
         </>
     );
 }
