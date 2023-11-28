@@ -6,7 +6,7 @@ import { faFileLines } from '@fortawesome/free-solid-svg-icons'
 const OrdersCard = () => {
     return (
         <>
-            <Card hoverable={true}>
+            <Card>
                 <Row gutter={[8, 8]}>
                     <Col span={8}>
                         <div style={{ backgroundColor: 'pink', borderRadius: '10px', height: '50px', width: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>

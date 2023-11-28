@@ -21,3 +21,8 @@ code {
   background: rgb(128, 125, 125);
   border-radius: 15px;
 }
+
+.ant-btn:hover {
+  color: grey !important;
+  border-color: grey !important;
+}
