@@ -30,6 +30,7 @@ const Map2 = () => {
                     return (
                         <>
                             <Marker
+                                color='pink'
                                 key={index}
                                 longitude={Number(item.lng)}
                                 latitude={Number(item.lat)}
