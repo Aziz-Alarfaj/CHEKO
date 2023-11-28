@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  client:
+    image: cheko-dev-i
+    build:
+      dockerfile: Dockerfile.dev
+    container_name: cheko-dev-c
+    volumes:
+      - ./cheko:/cheko
+      - node_modules:/cheko/node_modules/
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+volumes:
+  node_modules:

@@ -1,5 +1,4 @@
 import { Button, Input, Select, Space, Form } from 'antd';
-import { stringSimilarity } from 'string-similarity-js';
 
 
 const Search = ({ categories, restaurantData, filterRestaurantData }) => {

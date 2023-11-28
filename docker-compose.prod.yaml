@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  client:
+    image: cheko-prod-i
+    build:
+      dockerfile: Dockerfile.prod
+    container_name: cheko-prod-c
+    ports:
+      - "8080:80"
+    environment:
+      - NODE_ENV=production
