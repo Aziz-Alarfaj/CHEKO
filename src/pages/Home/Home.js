@@ -10,7 +10,6 @@ import ItemsList from './components/ItemsList';
 const Home = () => {
     const { restaurantData, categories, filteredRestaurantData, setFilteredRestaurantData } = useContext(RestaurantContext);
 
-    console.log('restaurantData', restaurantData);
     const [selectedCategory, setSelectedCategory] = useState(restaurantData[0].category);
 
     const getItemOfSpacificCategory = (category) => {

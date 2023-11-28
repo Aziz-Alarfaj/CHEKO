@@ -39,7 +39,6 @@ const Map2 = () => {
                                     setShowPopup({ [item.id]: true })
                                 }}
                             />
-                            {console.log('showPopup', showPopup)}
                             {showPopup[item.id] && (
                                 <Popup
                                     key={index}

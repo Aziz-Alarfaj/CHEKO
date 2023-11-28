@@ -16,7 +16,6 @@ const Search = ({ categories, restaurantData, filterRestaurantData }) => {
 
     const onFinish = (value) => {
         const data = searchRestaurantData(value.search, value.filter);
-        console.log('submit', data);
         filterRestaurantData(data)
     }
 
