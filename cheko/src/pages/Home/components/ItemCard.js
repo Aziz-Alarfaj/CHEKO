@@ -16,14 +16,20 @@ const ItemCard = ({ item }) => {
         setModalOpen(false)
     }
 
-    const addItemCount = () => {
+    const addItemCount = (e) => {
+        // Prevent the openModal from being triggered
+        e.stopPropagation();
+
         const itemCount = count;
         if (itemCount < maxOrders) {
             setCount(itemCount + 1)
         }
     }
 
-    const subtractItemCount = () => {
+    const subtractItemCount = (e) => {
+        // Prevent the openModal from being triggered
+        e.stopPropagation();
+
         const itemCount = count;
         if (itemCount > 0) {
             setCount(itemCount - 1)
